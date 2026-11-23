@@ -1,0 +1,84 @@
+:root {
+  --bg: #f5f8f4;
+  --surface: #ffffff;
+  --ink: #17302b;
+  --muted: #5b7068;
+  --line: #d6e0d9;
+  --green: #1f5a4a;
+  --chilli: #c9382a;
+  --radius: 10px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+}
+h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin: 1.5rem 0 1rem; }
+h2 { margin: 2rem 0 .75rem; }
+a { color: var(--green); }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 3px solid var(--chilli); outline-offset: 2px; }
+
+.container { width: min(1100px, 100% - 2rem); margin-inline: auto; padding-bottom: 3rem; }
+
+.navbar { background: var(--green); }
+.navbar-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem; padding-block: .75rem; padding-bottom: .75rem; }
+.brand { font: 700 1.4rem Georgia, serif; color: #fff; text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+nav a { color: #cfe5db; text-decoration: none; padding: .25rem 0; border-bottom: 2px solid transparent; }
+nav a.active { color: #fff; border-bottom-color: #fff; }
+
+.controls { display: grid; gap: 1rem; grid-template-columns: 2fr 1fr; margin-bottom: 1.5rem; }
+label { display: flex; flex-direction: column; gap: .35rem; font-weight: 600; }
+input, select, textarea {
+  font: inherit; padding: .6rem .75rem; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--surface); color: var(--ink);
+}
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--chilli); }
+
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.card a { color: inherit; text-decoration: none; flex: 1; }
+.card img { aspect-ratio: 1; object-fit: cover; width: 100%; background: var(--line); }
+.card h3 { font-size: 1.05rem; margin: .75rem .9rem; }
+.card .fav { margin: 0 .9rem .9rem; }
+
+.fav, .btn {
+  font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block;
+  padding: .5rem 1rem; border-radius: 8px; border: 2px solid var(--green);
+  background: var(--green); color: #fff; text-align: center;
+}
+.fav { background: transparent; color: var(--green); }
+.fav.saved { background: var(--chilli); border-color: var(--chilli); color: #fff; }
+.btn.danger { background: transparent; color: var(--chilli); border-color: var(--chilli); }
+
+.state { text-align: center; padding: 2.5rem 1rem; color: var(--muted); }
+.state h2 { color: var(--ink); margin-top: 0; }
+.spinner { width: 34px; height: 34px; margin: 0 auto 1rem; border: 4px solid var(--line); border-top-color: var(--green); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2.5s; } }
+
+.back { display: inline-block; margin-top: 1.25rem; }
+.details { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 2rem; align-items: start; }
+.details img { border-radius: var(--radius); width: 100%; }
+.details h1 { margin-top: 0; }
+.steps { grid-column: 1 / -1; max-width: 70ch; }
+.meta { color: var(--muted); font-weight: 400; }
+.ingredients { padding-left: 1.2rem; }
+
+.form { display: grid; gap: 1.1rem; max-width: 620px; }
+.error { color: var(--chilli); font-weight: 500; font-size: .9rem; }
+.success { background: #e2f2ea; border: 1px solid #a9d3bd; padding: .75rem 1rem; border-radius: 8px; }
+
+.own { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: .75rem 1rem; margin-bottom: .75rem; }
+.own summary { cursor: pointer; font-weight: 600; }
+
+@media (max-width: 720px) {
+  .controls, .details { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .85rem; }
+  .btn, .fav { padding: .65rem 1rem; }
+}
